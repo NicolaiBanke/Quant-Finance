@@ -8,20 +8,14 @@
 #include "distributions.h"
 #include "utils.h"
 
-
-
 // cumulative normal function
-double N(const double& x)
+double N(const double &x)
 {
     if (x > 0)
     {
         const double k = 1 / (1 + 0.2316419 * x);
 
-        return 1 - 1 / sqrt(2 * M_PI) * exp(-x * x / 2) * k * (0.319381530
-        + k * (-0.356563782
-        + k * (1.781477937 
-        + k * (-1.821255978 
-        + 1.330274429 * k))));
+        return 1 - 1 / sqrt(2 * M_PI) * exp(-x * x / 2) * k * (0.319381530 + k * (-0.356563782 + k * (1.781477937 + k * (-1.821255978 + 1.330274429 * k))));
     }
     else
     {
@@ -30,7 +24,7 @@ double N(const double& x)
 }
 
 // Inverse cumulative normal function computed with Moro algorithm
-double N_1(const double& x)
+double N_1(const double &x)
 {
 
     const std::vector<const double> a = {
