@@ -89,7 +89,7 @@ Find at least one example where the two graphs cross.
 
 One further thing to implement is an alternative engine based on Euler stepping.
 Divide the time, $T$, into a large number of steps, $N$. Let
-$$ \Delta t = T / N.$$
+$$ \Delta t = T / N. $$
 Evolve the stock price across each step by
 $$S_{(j+1) \Delta T} = S_{j \Delta T} + r S_{j \Delta T} \Delta T + S_{j \Delta T } \sigma \sqrt{\Delta T} W_j ,$$
 where the $W_j$ are independent normal variables. Running up to the last step this
@@ -98,7 +98,7 @@ pricers for the basic options above. The engine will need as inputs the number
 of steps and the number of paths.
 
 1. Plot the final price as a function of the number of steps to see how many steps
-are required for convergence..Computer projects
+are required for convergence.
 1. Compare the number of paths required for the two Monte Carlo methods to
 get a given degree of convergence.
 1. Make sure the two methods give the same prices.
