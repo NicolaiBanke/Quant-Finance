@@ -42,7 +42,7 @@ writing code to work using a random number generator class which can then be
 changed later on. This will allow you to check whether the random number generator
 is biased, and also to easily plug in a low-discrepancy generator at a later time.
 Each path in any Monte Carlo simulation will require a certain number of random
-draws. The maximum number needed is the dimensionality. It is best to set-up the
+draws. The maximum number needed is the _dimensionality_. It is best to set-up the
 class to draw a vector of this size from the random number generator at the start
 of each run, and make sure the random number generator is actually capable of that
 dimensionality. Several methods of generating random numbers are given in [123].
@@ -51,8 +51,10 @@ Once you have done this, you should
 1. Implement an engine which randomly evolves a stock price from time 0 to time
 $T$ according to a geometric Brownian motion with drift $r - d$,
 and volatility $\sigma$. Use the formula
+
 $$S_T = S_0 e^{(r-d) T - \frac{1}{2} \sigma^2 T + \sigma \sqrt{T} W}$$
-where W is a standard normal random variable.
+
+where $W$ is a standard normal random variable.
 1. Use the engine to write Monte Carlo pricers for all the products mentioned
 above. The engine generates a final stock value. The option's pay-off for that
 final value is then evaluated and discounted. These values are then averaged
