@@ -1,5 +1,3 @@
-#include <iostream>
 
-#include "distributions.h"
 
-int main(){}
+int main() {}
