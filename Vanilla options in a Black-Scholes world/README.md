@@ -91,8 +91,7 @@ One further thing to implement is an alternative engine based on Euler stepping.
 Divide the time, $T$, into a large number of steps, $N$. Let
 $$ \Delta t = T / N.$$
 Evolve the stock price across each step by
-$$S_{(j+1) \Delta T} = S_{j \Delta T} + r S_{j \Delta T} \Delta T
-+ S_{j \Delta T } \sigma \sqrt{\Delta T} W_j ,$$
+$$S_{(j+1) \Delta T} = S_{j \Delta T} + r S_{j \Delta T} \Delta T + S_{j \Delta T } \sigma \sqrt{\Delta T} W_j ,$$
 where the $W_j$ are independent normal variables. Running up to the last step this
 gives an alternate way of generating the final stock value. Use this to develop
 pricers for the basic options above. The engine will need as inputs the number
