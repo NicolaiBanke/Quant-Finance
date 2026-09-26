@@ -3,8 +3,8 @@
 
 class VanillaOption : public Option {
 public:
-  VanillaOption(const double &S, const double &K, const double &r,
-                const double &T, const double &sigma);
+  VanillaOption(const double &S0, const double &K, const double &r,
+                const double &T, const double &sigma, const double &d = 0);
 
   ~VanillaOption() override = default;
 

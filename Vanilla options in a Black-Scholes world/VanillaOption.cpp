@@ -4,20 +4,20 @@
 #include "../utils/utils.h"
 #include <cmath>
 
-VanillaOption::VanillaOption(const double &S_, const double &K_,
+VanillaOption::VanillaOption(const double &S0_, const double &K_,
                              const double &r_, const double &T_,
-                             const double &sigma_)
-    : Option(S_, K_, r_, T_, sigma_) {};
+                             const double &sigma_, const double &d_)
+    : Option(S0_, K_, r_, T_, sigma_, d_) {};
 
 double VanillaOption::calc_call_price() {
-  double d_1 = d_j(1, S, K, sigma, r, T);
-  double d_2 = d_j(2, S, K, sigma, r, T);
+  double d_1 = d_j(1, S0, K, r, T, sigma, d);
+  double d_2 = d_j(2, S0, K, r, T, sigma, d);
 
-  return S * N(d_1) - K * exp(-r * T) * N(d_2);
+  return S0 * exp(-d * T) * N(d_1) - K * exp(-r * T) * N(d_2);
 }
 double VanillaOption::calc_put_price() {
-  double d_1 = d_j(1, S, K, sigma, r, T);
-  double d_2 = d_j(2, S, K, sigma, r, T);
+  double d_1 = d_j(1, S0, K, r, T, sigma, d);
+  double d_2 = d_j(2, S0, K, r, T, sigma, d);
 
-  return -S * N(-d_1) + K * exp(-r * T) * N(-d_2);
+  return -S0 * exp(-d * T) * N(-d_1) + K * exp(-r * T) * N(-d_2);
 }
