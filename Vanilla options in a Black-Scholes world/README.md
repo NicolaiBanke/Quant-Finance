@@ -55,6 +55,7 @@ and volatility $\sigma$. Use the formula
 $$S_T = S_0 e^{(r-d) T - \frac{1}{2} \sigma^2 T + \sigma \sqrt{T} W}$$
 
 where $W$ is a standard normal random variable.
+
 1. Use the engine to write Monte Carlo pricers for all the products mentioned
 above. The engine generates a final stock value. The option's pay-off for that
 final value is then evaluated and discounted. These values are then averaged
