@@ -1,14 +1,13 @@
-#include "vanilla_option.h"
+#include "./VanillaOption.h"
+#include "../lib/Option.h"
 #include "../utils/distributions.h"
 #include "../utils/utils.h"
 #include <cmath>
 
-VanillaOption::VanillaOption(double &S_, double &K_, double &sigma_, double &r_,
-                             double &T_)
-    : S(S_), K(K_), sigma(sigma_), r(r_), T(T_) {}
-
-VanillaOption::VanillaOption(const VanillaOption &rhs)
-    : S(rhs.S), K(rhs.K), sigma(rhs.sigma), r(rhs.r), T(rhs.T) {};
+VanillaOption::VanillaOption(const double &S_, const double &K_,
+                             const double &r_, const double &T_,
+                             const double &sigma_)
+    : Option(S_, K_, r_, T_, sigma_) {};
 
 double VanillaOption::calc_call_price() {
   double d_1 = d_j(1, S, K, sigma, r, T);
