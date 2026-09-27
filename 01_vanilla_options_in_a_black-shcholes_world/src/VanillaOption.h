@@ -1,5 +1,5 @@
 #pragma once
-#include "../lib/Option.h"
+#include "../../lib/Option.h"
 
 class VanillaOption : public Option {
 public:

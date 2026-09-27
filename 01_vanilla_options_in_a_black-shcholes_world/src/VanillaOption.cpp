@@ -1,7 +1,7 @@
 #include "./VanillaOption.h"
-#include "../lib/Option.h"
-#include "../utils/distributions.h"
-#include "../utils/utils.h"
+#include "../../lib/Option.h"
+#include "../../utils/distributions.h"
+#include "../../utils/utils.h"
 #include <cmath>
 
 VanillaOption::VanillaOption(const double &S0_, const double &K_,

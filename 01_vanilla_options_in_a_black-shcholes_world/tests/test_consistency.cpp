@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../doctest.h"
-#include "./VanillaOption.h"
-#include "./formulas.h"
+#include "../../doctest.h"
+#include "../src/VanillaOption.h"
+#include "../src/formulas.h"
 #include <algorithm>
 #include <vector>
 
