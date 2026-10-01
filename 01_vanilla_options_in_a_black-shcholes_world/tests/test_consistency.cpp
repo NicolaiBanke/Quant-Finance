@@ -1,3 +1,5 @@
+#include <cmath>
+#include <cstdlib>
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../../doctest.h"
 #include "../src/VanillaOption.h"
@@ -5,13 +7,20 @@
 #include <algorithm>
 #include <vector>
 
+double S0;
+double K;
+double r;
+double T;
+double sigma;
+double d;
+
 TEST_CASE("Put-Call Parity") {
-  double S0 = 10.0;
-  double K = 5.0;
-  double r = .01;
-  double T = 1.0;
-  double sigma = .1;
-  double d = .05;
+  S0 = 10.0;
+  K = 5.0;
+  r = .01;
+  T = 1.0;
+  sigma = .1;
+  d = .05;
 
   VanillaOption vanilla_option(S0, K, r, T, sigma, d);
 
@@ -20,11 +29,11 @@ TEST_CASE("Put-Call Parity") {
 };
 
 TEST_CASE("Price of a call option should be monotone with strike") {
-  double S0 = 10.0;
-  double r = .01;
-  double T = 1.0;
-  double sigma = .1;
-  double d = .05;
+  S0 = 10.0;
+  r = .01;
+  T = 1.0;
+  sigma = .1;
+  d = .05;
 
   auto is_monotone = [=]() -> bool {
     std::vector<bool> directions;
@@ -42,4 +51,31 @@ TEST_CASE("Price of a call option should be monotone with strike") {
   };
 
   CHECK(is_monotone());
+}
+
+TEST_CASE("Call price bounds") {
+  // maybe choosing the parameters so that the gap between the bounds become
+  // extremely narrow will provide a justifiable check
+  auto is_within_bounds = []() {
+    for (int i = 0; i < 1000; i++) {
+      S0 = 1000.0 * (rand() / float(RAND_MAX));
+      K = 1000.0 * (rand() / float(RAND_MAX));
+      r = (rand() / float(RAND_MAX));
+      T = 10.0 * (rand() / float(RAND_MAX));
+      sigma = (rand() / float(RAND_MAX));
+      d = (rand() / float(RAND_MAX));
+
+      VanillaOption vanilla_option(S0, K, r, T, sigma, d);
+
+      if (!(S0 * exp(-d * T) - K * exp(-r * T) -
+                    vanilla_option.calc_call_price() <=
+                pow(10, -6) &&
+            S0 * exp(-d * T) - vanilla_option.calc_call_price() >=
+                pow(10, -6))) {
+        return false;
+      };
+    };
+    return true;
+  };
+  CHECK(is_within_bounds());
 }
