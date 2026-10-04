@@ -1,6 +1,6 @@
-#include "./DigitalOption.h"
-#include "../../utils/distributions.h"
-#include "../../utils/utils.h"
+#include "../../include/quant_finance/domain/DigitalOption.h"
+#include "../../include/quant_finance/core/distributions.h"
+#include "../../include/quant_finance/core/utils.h"
 #include <cmath>
 
 DigitalOption::DigitalOption(const double &S0_, const double &K_,

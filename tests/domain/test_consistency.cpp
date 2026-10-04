@@ -1,10 +1,9 @@
+#include "../../include/quant_finance/domain/VanillaOption.h"
+#include "../../include/quant_finance/domain/formulas.h"
+#include "../doctest.h"
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../../doctest.h"
-#include "../src/VanillaOption.h"
-#include "../src/formulas.h"
-#include <algorithm>
 #include <vector>
 
 double S0;
@@ -55,8 +54,6 @@ TEST_CASE("Price of a call option should be monotone with strike") {
 }
 
 TEST_CASE("Call price bounds") {
-  // maybe choosing the parameters so that the gap between the bounds become
-  // extremely narrow will provide a justifiable check
   auto is_within_bounds = []() {
     for (int i = 0; i < 1000; i++) {
       S0 = 1000.0 * (rand() / float(RAND_MAX));
@@ -129,4 +126,47 @@ TEST_CASE("For d=0 call price increases with T") {
   };
 
   CHECK(is_monotone());
+};
+
+TEST_CASE("Call price is convex with strike") {
+  S0 = 10.0;
+  double K1;
+  double K2;
+  r = .01;
+  sigma = .1;
+  T = .01;
+  d = 0.05;
+
+  double theta;
+
+  auto is_convex = [&]() -> bool {
+    for (int i = 0; i < 1000; i++) {
+      theta = rand() / float(RAND_MAX);
+      K1 = rand() / float(RAND_MAX) * S0;
+      K2 = rand() / float(RAND_MAX) * S0;
+
+      VanillaOption vanilla_option_1(S0, K1, r, T, sigma, d);
+      VanillaOption vanilla_option_2(S0, K2, r, T, sigma, d);
+      VanillaOption vanilla_option(S0, theta * K1 + (1 - theta) * K2, r, T,
+                                   sigma, d);
+
+      if (!(theta * vanilla_option_1.calc_call_price() +
+                (1 - theta) * vanilla_option_2.calc_call_price() >=
+            vanilla_option.calc_call_price())) {
+        return false;
+      };
+    };
+    return true;
+  };
+  CHECK(is_convex());
+};
+
+TEST_CASE("Price of call-spread should approximate the price of digital-call "
+          "option") {
+  CHECK(false);
+};
+
+TEST_CASE(
+    "Digital-call price plus digital-put price should equal zero-coupon bond") {
+  CHECK(false);
 };

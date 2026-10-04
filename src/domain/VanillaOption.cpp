@@ -1,7 +1,7 @@
-#include "./VanillaOption.h"
-#include "../../lib/Option.h"
-#include "../../utils/distributions.h"
-#include "../../utils/utils.h"
+#include "../../include/quant_finance/domain/VanillaOption.h"
+#include "../../include/quant_finance/core/distributions.h"
+#include "../../include/quant_finance/core/utils.h"
+#include "../../include/quant_finance/domain/Option.h"
 #include <cmath>
 
 VanillaOption::VanillaOption(const double &S0_, const double &K_,

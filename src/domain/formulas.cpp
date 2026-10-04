@@ -1,4 +1,3 @@
-#include "./formulas.h"
 #include <cmath>
 
 double forward_contract(const double &S0, const double &K, const double &r,

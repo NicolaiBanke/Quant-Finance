@@ -1,6 +1,6 @@
 #pragma once
-#include "../../lib/Option.h"
 #include "./DigitalOption.h"
+#include "./Option.h"
 
 class DigitalOption : public Option {
 public:

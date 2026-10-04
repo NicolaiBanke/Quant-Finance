@@ -4,9 +4,8 @@
 #include <cmath>
 #include <vector>
 
-#include "distributions.h"
-#include "utils.h"
-
+#include "../../include/quant_finance/core/distributions.h"
+#include "../../include/quant_finance/core/utils.h"
 // cumulative normal function
 double N(const double &x) {
   if (x > 0) {

@@ -1,4 +1,4 @@
-#include "./Option.h"
+#include "../../include/quant_finance/domain/Option.h"
 
 Option::Option(const double &S0_, const double &K_, const double &r_,
                const double &T_, const double &sigma_, const double &d_)
