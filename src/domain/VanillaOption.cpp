@@ -1,6 +1,5 @@
 #include "../../include/quant_finance/domain/VanillaOption.h"
 #include "../../include/quant_finance/core/distributions.h"
-#include "../../include/quant_finance/core/utils.h"
 #include "../../include/quant_finance/domain/Option.h"
 #include <cmath>
 
@@ -20,4 +19,12 @@ double VanillaOption::calc_put_price() {
   double d_2 = d_j(2, S0, K, r, T, sigma, d);
 
   return -S0 * exp(-d * T) * N(-d_1) + K * exp(-r * T) * N(-d_2);
+}
+
+double VanillaOption::d_j(const int j, const double &S0, const double &K,
+                          const double &r, const double &T, const double &sigma,
+                          const double &d) {
+  return (log(S0 / K) +
+          (r - d + pow((-1), j - 1) * (1.0 / 2) * pow(sigma, 2)) * T) /
+         (sigma * sqrt(T));
 }
