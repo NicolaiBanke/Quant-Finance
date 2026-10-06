@@ -5,7 +5,20 @@
 #include <vector>
 
 #include "../../include/quant_finance/core/distributions.h"
-#include "../../include/quant_finance/core/utils.h"
+
+namespace {
+double power_sum(const std::vector<double> &vec, const double &var) {
+
+  double sum = 0;
+  for (int i = 0; i < vec.size(); i++) {
+    sum += vec[i] * pow(var, i);
+  }
+
+  return sum;
+}
+
+} // namespace
+
 // cumulative normal function
 double N(const double &x) {
   if (x > 0) {
